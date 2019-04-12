@@ -1,7 +1,7 @@
 // Assignment #: 11
-// Name: Your name
-// StudentID:
-// Lecture:
+// Name: Zhengjun Li
+// StudentID: 1216057583
+// Lecture: T/Th 1:30
 // Description: This program will take out all characters in the start stack
 // and put them into the final stack in their sorted order using supporting stacks.
 
@@ -75,13 +75,14 @@ public boolean organizeCharacters()
         
       //get(pop) the next character to move from the start stack
       //and assign it to "nextCharacter"
-      /****1. ADD Your Code Here ****/
+
+        nextCharacter = startStack.pop();
 
       if (nextCharacter == nextCharacterToFinalStack)
       {
        //if it is the next smallest character,
        //then push it onto the final stack
-       /***2. ADD Your Code Here ****/
+       finalStack.push(nextCharacter);
           
        System.out.println("Move character " + nextCharacter
                         + " from start stack to final stack");
@@ -128,7 +129,8 @@ public void fromSupportingStackToFinalStack()
 	 {
       //remove(pop) the smallest character from its supporting stack
       //and move(push) to the final stack
-      /****3. ADD Your Code Here ****/
+
+      finalStack.push(supportingStacks[stackWithNextSmallest].pop());
          
       System.out.println("Move character " + smallestCharacter + " from supporting stack#"
                      + stackWithNextSmallest + " to final stack");
@@ -172,7 +174,17 @@ public boolean putInSupportingStack(char character2)
       //If the stack that you check is empty, go ahead and pick that supporting
       //stack's index as the chosenStackIndex if the chosenStackIndex was not
       //selected yet.
-        
+        if (!supportingStacks[i].isEmpty()) {
+            if (supportingStacks[i].peek() > character2 && supportingStacks[i].peek() < bestTop) {
+                bestTop = supportingStacks[i].peek();
+                chosenStackIndex = i;
+            }
+        }
+      else if (supportingStacks[i].isEmpty() && chosenStackIndex == -1) {
+              chosenStackIndex = i;
+              break;
+          }
+
       /****4. ADD Your Code Here ****/
     }
 
@@ -184,6 +196,8 @@ public boolean putInSupportingStack(char character2)
 
     //The process can continue, by pushing the parameter "character2"
     //into the supporting stack of the chosenStackIndex
+
+     supportingStacks[chosenStackIndex].push(character2);
     /****5. ADD Your Code Here ****/
      
     System.out.println("Move the character " + character2 + " from start stack "
@@ -194,6 +208,10 @@ public boolean putInSupportingStack(char character2)
     //update the variable "smallestCharacter" to the parameter character2
     //and the variable "stackWithNextSmallest" to "chosenStackIndex"
     //if character2 is smaller than "smallestCharacter"
+     if (character2 < smallestCharacter) {
+         smallestCharacter = character2;
+         stackWithNextSmallest = chosenStackIndex;
+     }
     /****6. ADD Your Code Here ****/
 
     return true;

@@ -1,7 +1,7 @@
 // Assignment #: 11
-// Name: Your name
-// StudentID:
-// Lecture:
+// Name: Zhengjun Li
+// StudentID: 1216057583
+// Lecture: T/Th 1:30
 // Description: Assignment 11 class displays a menu of choices to a user
 //        and performs the chosen task. It will keep asking a user to
 //      enter the next choice until the choice of 'Q' (Quit) is entered.
